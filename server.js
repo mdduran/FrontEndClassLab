@@ -2,7 +2,7 @@ var http = require('http'),
     qs = require('querystring'),
     fs = require('fs'),
     url = require('url'),
-    port = 1567
+    port = 8080
 
 // Add more movies! (For a technical challenge, use a file, database, or even an API!)
 var movies = ['Jaws', 'Jaws 2', 'Jaws 3', 'Doctor Strange']
@@ -26,7 +26,7 @@ var server = http.createServer(function(req, res) {
             filteredMovies = movies;
             sendIndex(res);
             break;
-        case '/search':
+        case '/year':
             if (query && req.method === "GET") { // Search
                 handleSearch(res, uri);
             } else {
@@ -225,27 +225,27 @@ function sendIndex(res) {
 
     html = html + '<div class="container" id="forms">'
         // SEARCH by year FOR Billionaire IN LIST
-    html = html + '<form action="year" method="get">'
-    html = html + '<input type="text" name="search" placeholder="Type a year to search..." />'
+    html = html + '<form action="" method="get">'
+    html = html + '<input type="text" name="year" placeholder="Type a year to search..." />'
     html = html + '<button class="btn btn-primary" type="submit">Search</button>'
     html = html + '</form>'
 
-    // ADD MOVIE TO LIST
-    html = html + '<form action="add" method="post">'
-    html = html + '<input type="text" name="add" placeholder="Add a movie to the list..." />'
-    html = html + '<button type="submit" value="Save">Add</button>'
+    // SEARCH by rank FOR Billionaire IN LIST
+    html = html + '<form action="" method="get">'
+    html = html + '<input type="text" name="rank" placeholder="Type a rank to search..." />'
+    html = html + '<button class="btn btn-primary" type="submit">Search</button>'
     html = html + '</form>'
 
-    // DELETE MOVIE FROM LIST
-    html = html + '<form action="delete" method="post">'
-    html = html + '<input type="text" name="delete" placeholder="Remove a movie from the list..." />'
-    html = html + '<button type="submit" value="Save">Delete</button>'
+    // SEARCH by gender FOR Billionaire IN LIST
+    html = html + '<form action="" method="get">'
+    html = html + '<input type="text" name="gender" placeholder="Type a gender to search..." />'
+    html = html + '<button class="btn btn-primary" type="submit">Search</button>'
     html = html + '</form>'
 
     html = html + '</div>'
 
     html = html + '<div class="container">'
-    html = html + '<h2>Movie List</h2>'
+    html = html + '<h2>Billionaire List</h2>'
         //Start list of movies here
     html = html + '<ul>'
         // Note: the next line is fairly complex. 
